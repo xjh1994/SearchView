@@ -5,7 +5,7 @@ Usage
 
 [![](https://jitpack.io/v/xjh1994/SearchView.svg)](https://jitpack.io/#xjh1994/SearchView)
 
-To get **HelloAndroid** into your build:
+To get **SearchView** into your build:
 
 **Step 1**. Add the JitPack repository to your build file
 
