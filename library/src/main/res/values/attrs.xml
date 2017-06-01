@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchView">
+        <attr name="searchBackgroundDrawable" format="reference" />
+        <attr name="searchIcon" format="reference" />
+        <attr name="searchClearIcon" format="reference" />
+        <attr name="searchCancelIcon" format="reference" />
+        <attr name="searchCancelText" format="string|reference" />
+        <attr name="searchHintText" format="string|reference" />
+        <attr name="searchLoadingEnabled" format="boolean" />
+        <attr name="searchEmptyToast" format="string|reference" />
+    </declare-styleable>
+</resources>
