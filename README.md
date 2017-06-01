@@ -20,7 +20,7 @@ Add it in your root build.gradle at the end of repositories:
 **Step 2**. Add the dependency  [latest_release](https://github.com/xjh1994/SearchView/releases)
 
 	dependencies {
-	        compile 'com.github.xjh1994:SearchView:1.0'
+	        compile 'com.github.xjh1994:SearchView:1.0.2'
 	}
 
 
