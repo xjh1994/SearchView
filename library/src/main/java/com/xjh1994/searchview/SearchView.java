@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,8 @@ public class SearchView extends LinearLayout {
                 etSearch.setText("");
             }
         });
+
+        setGravity(Gravity.CENTER_VERTICAL);
     }
 
     public void addTextChangedListener(TextWatcher textWatcher) {
