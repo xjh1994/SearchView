@@ -2,6 +2,7 @@ package com.xjh1994.searchview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -32,7 +33,10 @@ public class SearchView extends LinearLayout {
     ImageView ivCancel;
     TextView tvCancel;
 
-    String searchEmptyToast;
+    private int mIconResId;
+    private String searchHintText;
+    private String searchEmptyToast;
+    private boolean searchLoadingEnabled;
 
     OnSearchClickListener onSearchClickListener;
 
@@ -60,7 +64,10 @@ public class SearchView extends LinearLayout {
     private void obtainAttrs(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SearchView);
 
+        mIconResId = ta.getResourceId(R.styleable.SearchView_searchIcon, 0);
+        searchHintText = ta.getString(R.styleable.SearchView_searchHintText);
         searchEmptyToast = ta.getString(R.styleable.SearchView_searchEmptyToast);
+        searchLoadingEnabled = ta.getBoolean(R.styleable.SearchView_searchLoadingEnabled, true);
 
         ta.recycle();
     }
@@ -72,6 +79,16 @@ public class SearchView extends LinearLayout {
         pbLoading = (ProgressBar) findViewById(R.id.pbLoading);
         ivCancel = (ImageView) findViewById(R.id.ivCancel);
         tvCancel = (TextView) findViewById(R.id.tvCancel);
+
+        if (mIconResId != 0) {
+            setSearchIcon(mIconResId);
+        }
+
+        if (!TextUtils.isEmpty(searchHintText)) {
+            etSearch.setHint(searchHintText);
+        }
+
+        pbLoading.setEnabled(searchLoadingEnabled);
 
         ivClear.setOnClickListener(new OnClickListener() {
             @Override
@@ -131,6 +148,38 @@ public class SearchView extends LinearLayout {
                 }
             }
         });
+    }
+
+    public EditText getEditText() {
+        return etSearch;
+    }
+
+    public void setText(String text) {
+        etSearch.setText(text);
+    }
+
+    public void setHint(String hintText) {
+        etSearch.setHint(hintText);
+    }
+
+    public void setSearchIcon(int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            etSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(resId, 0, 0, 0);
+        } else {
+            etSearch.setCompoundDrawables(getResources().getDrawable(resId), null, null, null);
+        }
+    }
+
+    public void showProgress() {
+        pbLoading.setVisibility(VISIBLE);
+    }
+
+    public void hideProgress() {
+        pbLoading.setVisibility(GONE);
+    }
+
+    public void setProgress(boolean visible) {
+        pbLoading.setVisibility(visible ? VISIBLE : GONE);
     }
 
     public void setOnCancelClickListener(OnClickListener onClickListener) {

@@ -5,5 +5,5 @@ package com.xjh1994.searchview.inter;
  */
 
 public interface SearchResultListener {
-    void showLoading(int visible);
+    void showLoading(boolean visible);
 }

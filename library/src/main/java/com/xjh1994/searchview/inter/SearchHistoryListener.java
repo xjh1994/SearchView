@@ -5,6 +5,6 @@ package com.xjh1994.searchview.inter;
  */
 
 public interface SearchHistoryListener {
-    void onItemClick(int position, String content); //点击搜索结果项
+    void onItemClick(int position, Object item); //点击搜索结果项
     void onClearHistoryClick(); //清除历史记录
 }
